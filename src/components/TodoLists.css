@@ -1,0 +1,23 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  background: #fff;
+  height: 40px;
+  line-height: 40px;
+  color: #666;
+}
+
+li:nth-child(2n) {
+  background: #f7f7f7;
+}
+
+li:hover span {
+  width: 40px;
+  opacity: 1;
+}
+button {
+  float: right;
+}

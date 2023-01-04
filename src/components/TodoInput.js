@@ -1,25 +1,33 @@
-// import React, { useContext } from "react";
-
-// const TodoInput = () => {
-//   const { todo } = useContext(TodoContext);
-//   return (
-//     <>
-//       <h1> ToDO App</h1>
-//       <input type="text" placeholder="Enter your Todo" />
-//       <button>Submit</button>
-//     </>
-//   );
-// };
-
-// export default TodoInput;
-
-import { useContext } from "react";
-import { TodoContext } from "../context/TodoContext";
+import { useState } from "react";
+import { useTodoContext } from "../context/TodoContext";
+import "./TodoInput.css";
 
 function TodoInput() {
-  const todo = useContext(TodoContext);
-  console.log(typeof todo);
-  return <div>{todo}</div>;
+  const [todoValue, setTodoValue] = useState("");
+  const { addTodos } = useTodoContext();
+  function changeHandler(e) {
+    setTodoValue(e.target.value);
+  }
+
+  function submitHandler(e) {
+    e.preventDefault();
+    if (!todoValue) {
+      return;
+    }
+    addTodos(todoValue);
+    setTodoValue("");
+  }
+  return (
+    <>
+      <input
+        onChange={changeHandler}
+        type="text"
+        value={todoValue}
+        placeholder="Enter your todos"
+      />
+      <button onClick={submitHandler}>Submit</button>
+    </>
+  );
 }
 
 export default TodoInput;
